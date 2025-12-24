@@ -1,0 +1,7 @@
+baseURL = 'https://jobjorn.github.io/jobjorn.no/'
+languageCode = 'en-us'
+title = 'Jobjorn Rokenes Myren'
+
+[params]
+  author = 'Jobjorn Rokenes Myren'
+  description = 'Personal homepage'
