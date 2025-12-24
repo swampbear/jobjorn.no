@@ -5,3 +5,7 @@ title = 'Jobjorn Rokenes Myren'
 [params]
   author = 'Jobjorn Rokenes Myren'
   description = 'Personal homepage'
+
+[caches]
+  [caches.images]
+    dir = ':cacheDir/images'
