@@ -6,7 +6,7 @@ draft: false
 
 # Retrospective look at 2025
 
-2025 is coming to an end. For me personaly has this year offered a lot of great experiences. From working on interesting topics in my studies
+2025 is coming to an end. This year has offered a lot of great experiences. From working on interesting topics in my studies
 to qualifying to the Cup final i Norwegian Volleyball. Also got engaged, which is kind of cool.
 
 ## Completing a bachelors in Information Technology
