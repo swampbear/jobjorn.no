@@ -14,7 +14,7 @@ to qualifying to the Cup final in Norwegian Volleyball. Also got engaged, which 
 <div class="image-right">
 <div class="text">
 
-For our thesis we got to implement a RAG application for Fjord1. By we I mean me Sondre Ness and Siri Nordtrand. Together we formed a well balanced team,
+For our thesis we got to implement a RAG application for Fjord1. By we I mean me Sondre Ness and Siri Eielsen. Together we formed a well balanced team,
 with technical skill, problem solving skills and a good portion of good humor. We got to see the application in action for several tests and got a lot of positive feedback.
 However it was not quite ready for production, since the LLM sometimes could answer wrong quite confidently. In some scenarios this could have big consequences.
 Want to read more about it? Have a look here [Thesis](https://nva.sikt.no/registration/01990f0ac805-657560b2-8860-44ef-91ef-ac4b7542adb8)
