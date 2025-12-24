@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.LanguageCode }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - {{ .Site.Title }}</title>
+    <meta name="description" content="Blog posts by {{ .Site.Params.author }}">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Courier New', monospace;
+            line-height: 1.6;
+            color: #a9b1d6;
+            background: #1a1b26;
+            padding: 1rem;
+        }
+
+        .terminal-wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            border: 1px solid #565f89;
+            background: #24283b;
+            margin-bottom: 1rem;
+        }
+
+        .header-content {
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .header-content h1 {
+            font-size: 1.5rem;
+            color: #7dcfff;
+            margin-bottom: 1.5rem;
+        }
+
+        nav {
+            display: flex;
+            gap: 0.5rem;
+            justify-content: center;
+        }
+
+        nav a {
+            color: #a9b1d6;
+            text-decoration: none;
+            padding: 0.5rem 1.5rem;
+            border: 1px solid #565f89;
+            background: #1f2335;
+            transition: all 0.2s;
+        }
+
+        nav a:hover, nav a.active {
+            background: #2f334d;
+            color: #7dcfff;
+            border-color: #7aa2f7;
+        }
+
+        .panel {
+            border: 1px solid #565f89;
+            background: #24283b;
+        }
+
+        .panel-title {
+            padding: 0.75rem 1rem;
+            background: #1f2335;
+            color: #7aa2f7;
+            font-weight: bold;
+            border-bottom: 1px solid #565f89;
+        }
+
+        .panel-content {
+            padding: 1rem;
+        }
+
+        .blog-post {
+            border: 1px solid #414868;
+            background: #1f2335;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            transition: border-color 0.2s;
+        }
+
+        .blog-post:hover {
+            border-color: #7aa2f7;
+        }
+
+        .blog-header {
+            border-bottom: 1px solid #414868;
+            padding-bottom: 0.75rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .blog-post h2 {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .blog-post h2 a {
+            color: #7dcfff;
+            text-decoration: none;
+        }
+
+        .blog-post h2 a:hover {
+            color: #bb9af7;
+        }
+
+        .blog-meta {
+            color: #565f89;
+            font-size: 0.9rem;
+        }
+
+        .blog-summary {
+            color: #a9b1d6;
+            line-height: 1.7;
+            margin-bottom: 1rem;
+        }
+
+        .read-more {
+            display: inline-block;
+            color: #7aa2f7;
+            text-decoration: none;
+            border: 1px solid #565f89;
+            padding: 0.25rem 1rem;
+            background: #24283b;
+        }
+
+        .read-more:hover {
+            background: #2f334d;
+            border-color: #7aa2f7;
+        }
+
+        .no-posts {
+            text-align: center;
+            padding: 3rem;
+            color: #565f89;
+            border: 1px dashed #414868;
+            background: #1f2335;
+        }
+
+        footer {
+            border: 1px solid #565f89;
+            background: #24283b;
+            margin-top: 1rem;
+            padding: 1rem;
+            text-align: center;
+            color: #565f89;
+        }
+
+        @media (max-width: 768px) {
+            .header-content h1 {
+                font-size: 1.25rem;
+            }
+
+            nav {
+                flex-direction: column;
+            }
+
+            nav a {
+                text-align: center;
+            }
+        }
+
+        ::-webkit-scrollbar {
+            width: 10px;
+            height: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #1a1b26;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #414868;
+            border: 1px solid #565f89;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #565f89;
+        }
+    </style>
+</head>
+<body>
+    <div class="terminal-wrapper">
+        <header>
+            <div class="header-content">
+                <h1>$ cat blog/*</h1>
+                <nav>
+                    <a href="{{ .Site.BaseURL }}">Home</a>
+                    <a href="{{ .Site.BaseURL }}blog/" class="active">Blog</a>
+                </nav>
+            </div>
+        </header>
+
+        <div class="panel">
+            <div class="panel-title">Posts</div>
+            <div class="panel-content">
+                {{ $posts := where .Site.RegularPages "Section" "blog" }}
+                {{ if $posts }}
+                    {{ range $posts }}
+                    <article class="blog-post">
+                        <div class="blog-header">
+                            <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+                            <div class="blog-meta">
+                                {{ .Date.Format "2006-01-02" }}
+                            </div>
+                        </div>
+                        {{ if .Summary }}
+                        <div class="blog-summary">
+                            {{ .Summary }}
+                        </div>
+                        {{ end }}
+                        <a href="{{ .RelPermalink }}" class="read-more">Read more →</a>
+                    </article>
+                    {{ end }}
+                {{ else }}
+                    <div class="no-posts">
+                        No blog posts yet. Stay tuned!
+                    </div>
+                {{ end }}
+            </div>
+        </div>
+
+        <footer>
+            &copy; {{ now.Year }} Jobjorn Rokenes Myren
+        </footer>
+    </div>
+</body>
+</html>

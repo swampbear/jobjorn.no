@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.LanguageCode }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ .Title }} - {{ .Site.Title }}</title>
+    <meta name="description" content="{{ .Summary | default .Site.Params.description }}">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Courier New', monospace;
+            line-height: 1.6;
+            color: #a9b1d6;
+            background: #1a1b26;
+            padding: 1rem;
+        }
+
+        .terminal-wrapper {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        header {
+            border: 1px solid #565f89;
+            background: #24283b;
+            margin-bottom: 1rem;
+        }
+
+        .header-content {
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .header-content h1 {
+            font-size: 1.5rem;
+            color: #7dcfff;
+            margin-bottom: 1.5rem;
+        }
+
+        nav {
+            display: flex;
+            gap: 0.5rem;
+            justify-content: center;
+        }
+
+        nav a {
+            color: #a9b1d6;
+            text-decoration: none;
+            padding: 0.5rem 1.5rem;
+            border: 1px solid #565f89;
+            background: #1f2335;
+            transition: all 0.2s;
+        }
+
+        nav a:hover {
+            background: #2f334d;
+            color: #7dcfff;
+            border-color: #7aa2f7;
+        }
+
+        .panel {
+            border: 1px solid #565f89;
+            background: #24283b;
+        }
+
+        .panel-title {
+            padding: 0.75rem 1rem;
+            background: #1f2335;
+            color: #7aa2f7;
+            font-weight: bold;
+            border-bottom: 1px solid #565f89;
+        }
+
+        .panel-content {
+            padding: 2rem;
+        }
+
+        .article-meta {
+            color: #565f89;
+            font-size: 0.9rem;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #414868;
+        }
+
+        .article-content {
+            font-size: 1rem;
+            line-height: 1.8;
+            color: #a9b1d6;
+        }
+
+        .article-content h1,
+        .article-content h2,
+        .article-content h3,
+        .article-content h4,
+        .article-content h5,
+        .article-content h6 {
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            color: #7dcfff;
+            border-bottom: 1px solid #414868;
+            padding-bottom: 0.5rem;
+        }
+
+        .article-content h2 {
+            font-size: 1.5rem;
+        }
+
+        .article-content h3 {
+            font-size: 1.25rem;
+        }
+
+        .article-content p {
+            margin-bottom: 1.5rem;
+        }
+
+        .article-content ul,
+        .article-content ol {
+            margin-bottom: 1.5rem;
+            margin-left: 2rem;
+        }
+
+        .article-content li {
+            margin-bottom: 0.5rem;
+        }
+
+        .article-content code {
+            background: #1f2335;
+            color: #9ece6a;
+            padding: 0.2rem 0.4rem;
+            border: 1px solid #414868;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+
+        .article-content pre {
+            background: #1f2335;
+            color: #a9b1d6;
+            padding: 1.5rem;
+            border: 1px solid #565f89;
+            overflow-x: auto;
+            margin-bottom: 1.5rem;
+        }
+
+        .article-content pre code {
+            background: transparent;
+            padding: 0;
+            color: inherit;
+            border: none;
+        }
+
+        .article-content blockquote {
+            border-left: 3px solid #7aa2f7;
+            padding-left: 1.5rem;
+            margin: 1.5rem 0;
+            color: #7aa2f7;
+            font-style: italic;
+            background: #1f2335;
+            padding: 1rem 1.5rem;
+        }
+
+        .article-content img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #565f89;
+            margin: 1.5rem 0;
+        }
+
+        .article-content .image-right {
+            display: flex;
+            gap: 2rem;
+            align-items: flex-start;
+            margin-bottom: 2rem;
+        }
+
+        .article-content .image-right .text {
+            flex: 1;
+        }
+
+        .article-content .image-right .image {
+            flex: 0 0 300px;
+        }
+
+        .article-content .image-right img {
+            width: 100%;
+            margin: 0;
+        }
+
+        @media (max-width: 768px) {
+            .article-content .image-right {
+                flex-direction: column;
+            }
+
+            .article-content .image-right .image {
+                flex: 1 1 auto;
+            }
+        }
+
+        .article-content a {
+            color: #7aa2f7;
+            text-decoration: none;
+            border-bottom: 1px solid #565f89;
+        }
+
+        .article-content a:hover {
+            color: #bb9af7;
+            border-bottom-color: #bb9af7;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 2rem;
+            color: #7aa2f7;
+            text-decoration: none;
+            border: 1px solid #565f89;
+            padding: 0.5rem 1.5rem;
+            background: #1f2335;
+        }
+
+        .back-link:hover {
+            background: #2f334d;
+            border-color: #7aa2f7;
+        }
+
+        footer {
+            border: 1px solid #565f89;
+            background: #24283b;
+            margin-top: 1rem;
+            padding: 1rem;
+            text-align: center;
+            color: #565f89;
+        }
+
+        @media (max-width: 768px) {
+            .header-content h1 {
+                font-size: 1.25rem;
+            }
+
+            nav {
+                flex-direction: column;
+            }
+
+            nav a {
+                text-align: center;
+            }
+
+            .article-content {
+                font-size: 0.95rem;
+            }
+        }
+
+        ::-webkit-scrollbar {
+            width: 10px;
+            height: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #1a1b26;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #414868;
+            border: 1px solid #565f89;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #565f89;
+        }
+    </style>
+</head>
+<body>
+    <div class="terminal-wrapper">
+        <header>
+            <div class="header-content">
+                <h1>{{ .Title }}</h1>
+                <nav>
+                    <a href="{{ .Site.BaseURL }}">Home</a>
+                    <a href="{{ .Site.BaseURL }}blog/">Blog</a>
+                </nav>
+            </div>
+        </header>
+
+        <div class="panel">
+            <div class="panel-title">{{ .Date.Format "2006-01-02" }}</div>
+            <div class="panel-content">
+                <article>
+                    <div class="article-content">
+                        {{ .Content }}
+                    </div>
+                    <a href="{{ .Site.BaseURL }}blog/" class="back-link">← Back</a>
+                </article>
+            </div>
+        </div>
+
+        <footer>
+            &copy; {{ now.Year }} Jobjorn Rokenes Myren
+        </footer>
+    </div>
+</body>
+</html>

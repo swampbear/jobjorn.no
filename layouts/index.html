@@ -13,98 +13,129 @@
         }
 
         body {
-            font-family: Georgia, serif;
+            font-family: 'Courier New', monospace;
             line-height: 1.6;
-            color: #333;
-            background: #ffffff;
+            color: #a9b1d6;
+            background: #1a1b26;
+            padding: 1rem;
+        }
+
+        .terminal-wrapper {
+            max-width: 1400px;
+            margin: 0 auto;
         }
 
         header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 3rem 2rem;
+            border: 1px solid #565f89;
+            background: #24283b;
+            margin-bottom: 1rem;
+        }
+
+        .header-content {
+            padding: 2rem;
             text-align: center;
         }
 
-        header h1 {
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
+        .header-content h1 {
+            font-size: 1.5rem;
+            color: #7dcfff;
+            margin-bottom: 1.5rem;
+        }
+
+        nav {
+            display: flex;
+            gap: 0.5rem;
+            justify-content: center;
+        }
+
+        nav a {
+            color: #a9b1d6;
+            text-decoration: none;
+            padding: 0.5rem 1.5rem;
+            border: 1px solid #565f89;
+            background: #1f2335;
+            transition: all 0.2s;
+        }
+
+        nav a:hover, nav a.active {
+            background: #2f334d;
+            color: #7dcfff;
+            border-color: #7aa2f7;
         }
 
         .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem;
-        }
-
-        .content-wrapper {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-            margin-top: 2rem;
+            gap: 1rem;
         }
 
-        .section {
-            background: #f8f9fa;
-            padding: 2rem;
-            border-radius: 12px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        .panel {
+            border: 1px solid #565f89;
+            background: #24283b;
         }
 
-        .section h2 {
-            font-size: 2rem;
-            margin-bottom: 1.5rem;
-            text-align: center;
-            color: #2c3e50;
+        .panel-title {
+            padding: 0.75rem 1rem;
+            background: #1f2335;
+            color: #7aa2f7;
+            font-weight: bold;
+            border-bottom: 1px solid #565f89;
         }
 
-        .education-item, .experience-item {
-            background: white;
-            padding: 1.5rem;
-            margin-bottom: 1rem;
-            border-radius: 8px;
-            border-left: 4px solid #667eea;
+        .panel-content {
+            padding: 1rem;
         }
 
-        .education-item.completed {
-            border-left-color: #10b981;
-        }
-
-        .education-item.in-progress {
-            border-left-color: #f59e0b;
-        }
-
-        .badge {
-            display: inline-block;
-            padding: 0.25rem 0.75rem;
-            border-radius: 4px;
-            font-size: 0.875rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-        }
-
-        .badge-success {
-            background: #d1fae5;
-            color: #065f46;
-        }
-
-        .badge-warning {
-            background: #fef3c7;
-            color: #92400e;
-        }
-
-        .education-item h3, .experience-item h3 {
-            color: #1f2937;
+        .item {
+            border: 1px solid #414868;
+            background: #1f2335;
+            padding: 1rem;
             margin-bottom: 0.75rem;
-            font-size: 1.25rem;
         }
 
-        .education-item p, .experience-item p {
+        .item-header {
+            padding-bottom: 0.75rem;
+            margin-bottom: 0.75rem;
+            border-bottom: 1px solid #414868;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .item-title {
+            color: #7dcfff;
+            font-weight: bold;
+        }
+
+        .status-badge {
+            padding: 0.25rem 0.75rem;
+            font-size: 0.85rem;
+            border: 1px solid;
+            font-weight: bold;
+        }
+
+        .status-success {
+            color: #9ece6a;
+            border-color: #9ece6a;
+            background: rgba(158, 206, 106, 0.1);
+        }
+
+        .status-warning {
+            color: #e0af68;
+            border-color: #e0af68;
+            background: rgba(224, 175, 104, 0.1);
+        }
+
+        .item-detail {
             margin: 0.25rem 0;
-            color: #4b5563;
+            color: #a9b1d6;
         }
 
-        .skills {
+        .item-detail strong {
+            color: #bb9af7;
+        }
+
+        .skills-grid {
             display: flex;
             flex-wrap: wrap;
             gap: 0.5rem;
@@ -112,87 +143,136 @@
         }
 
         .skill-tag {
-            background: #e0e7ff;
-            color: #3730a3;
+            border: 1px solid #565f89;
+            background: #2f334d;
+            color: #7aa2f7;
             padding: 0.25rem 0.75rem;
-            border-radius: 4px;
-            font-size: 0.875rem;
+            font-size: 0.85rem;
         }
 
         footer {
+            border: 1px solid #565f89;
+            background: #24283b;
+            margin-top: 1rem;
+            padding: 1rem;
             text-align: center;
-            padding: 2rem;
-            margin-top: 3rem;
-            color: #6b7280;
+            color: #565f89;
+        }
+
+        .year-badge {
+            color: #f7768e;
+            font-weight: bold;
         }
 
         @media (max-width: 768px) {
-            .content-wrapper {
+            .container {
                 grid-template-columns: 1fr;
             }
             
-            header h1 {
-                font-size: 1.75rem;
+            .header-content h1 {
+                font-size: 1.25rem;
             }
+
+            nav {
+                flex-direction: column;
+            }
+
+            nav a {
+                text-align: center;
+            }
+        }
+
+        ::-webkit-scrollbar {
+            width: 10px;
+            height: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #1a1b26;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #414868;
+            border: 1px solid #565f89;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #565f89;
         }
     </style>
 </head>
 <body>
-    <header>
-        <h1>Welcome to jobjorn.no</h1>
-    </header>
+    <div class="terminal-wrapper">
+        <header>
+            <div class="header-content">
+                <h1>$ whoami</h1>
+                <nav>
+                    <a href="{{ .Site.BaseURL }}" class="active">Home</a>
+                    <a href="{{ .Site.BaseURL }}blog/">Blog</a>
+                </nav>
+            </div>
+        </header>
 
-    <div class="container">
-        <div class="content-wrapper">
-            <div class="section">
-                <h2>Education</h2>
-                
-                <div class="education-item completed">
-                    <span class="badge badge-success">Completed</span>
-                    <h3>B.Sc Information Technology</h3>
-                    <p><strong>Thesis:</strong> Retrieval Augmented Generation Fjord1</p>
-                    <p><strong>Grade:</strong> A</p>
-                </div>
+        <div class="container">
+            <div class="panel">
+                <div class="panel-title">Education</div>
+                <div class="panel-content">
+                    <div class="item">
+                        <div class="item-header">
+                            <span class="item-title">B.Sc Information Technology</span>
+                            <span class="status-badge status-success">✓ COMPLETED</span>
+                        </div>
+                        <div class="item-detail"><strong>Thesis:</strong> Retrieval Augmented Generation Fjord1</div>
+                        <div class="item-detail"><strong>Grade:</strong> A</div>
+                    </div>
 
-                <div class="education-item in-progress">
-                    <span class="badge badge-warning">In Progress</span>
-                    <h3>M.Sc Applied Data Technology</h3>
-                    <p>The future will tell</p>
+                    <div class="item">
+                        <div class="item-header">
+                            <span class="item-title">M.Sc Applied Data Technology</span>
+                            <span class="status-badge status-warning">⟳ IN PROGRESS</span>
+                        </div>
+                        <div class="item-detail">The future will tell</div>
+                    </div>
                 </div>
             </div>
 
-            <div class="section">
-                <h2>Experience</h2>
-                
-                <div class="experience-item">
-                    <h3>HVLRobotics</h3>
-                    <p><strong>Year:</strong> 2025</p>
-                    <p><strong>Role:</strong> Fullstack Developer</p>
-                    <div class="skills">
-                        <span class="skill-tag">React</span>
-                        <span class="skill-tag">Three.js</span>
-                        <span class="skill-tag">CI/CD</span>
-                        <span class="skill-tag">Docker</span>
-                        <span class="skill-tag">Agile</span>
-                        <span class="skill-tag">Scrum</span>
+            <div class="panel">
+                <div class="panel-title">Experience</div>
+                <div class="panel-content">
+                    <div class="item">
+                        <div class="item-header">
+                            <span class="item-title">HVLRobotics</span>
+                            <span class="year-badge">[2025]</span>
+                        </div>
+                        <div class="item-detail"><strong>Role:</strong> Fullstack Developer</div>
+                        <div class="skills-grid">
+                            <span class="skill-tag">React</span>
+                            <span class="skill-tag">Three.js</span>
+                            <span class="skill-tag">CI/CD</span>
+                            <span class="skill-tag">Docker</span>
+                            <span class="skill-tag">Agile</span>
+                            <span class="skill-tag">Scrum</span>
+                        </div>
                     </div>
-                </div>
 
-                <div class="experience-item">
-                    <h3>HVLRobotics</h3>
-                    <p><strong>Year:</strong> 2024</p>
-                    <p><strong>Role:</strong> Backend Developer</p>
-                    <div class="skills">
-                        <span class="skill-tag">Python</span>
-                        <span class="skill-tag">TKInter</span>
+                    <div class="item">
+                        <div class="item-header">
+                            <span class="item-title">HVLRobotics</span>
+                            <span class="year-badge">[2024]</span>
+                        </div>
+                        <div class="item-detail"><strong>Role:</strong> Backend Developer</div>
+                        <div class="skills-grid">
+                            <span class="skill-tag">Python</span>
+                            <span class="skill-tag">TKInter</span>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <footer>
-        <p>&copy; {{ now.Year }} Jobjorn Rokenes Myren</p>
-    </footer>
+        <footer>
+            &copy; {{ now.Year }} Jobjorn Rokenes Myren
+        </footer>
+    </div>
 </body>
 </html>

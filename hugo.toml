@@ -1,4 +1,4 @@
-baseURL = 'https://jobjorn.github.io/jobjorn.no/'
+baseURL = 'https://swampbear.github.io/jobjorn.no/'
 languageCode = 'en-us'
 title = 'Jobjorn Rokenes Myren'
 
@@ -6,6 +6,7 @@ title = 'Jobjorn Rokenes Myren'
   author = 'Jobjorn Rokenes Myren'
   description = 'Personal homepage'
 
-[caches]
-  [caches.images]
-    dir = ':cacheDir/images'
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
