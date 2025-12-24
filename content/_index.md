@@ -9,15 +9,17 @@ title: "Jobjorn Rokenes Myren"
 <div class="education-section">
 
 ### B.Sc Information Technology
+
 **Status:** Completed ✓  
 **Thesis:** Retrieval Augmented Generation Fjord1  
 **Grade:** A
 
 ---
 
-### M.Sc Applied Data Technology
+### M.Sc Information and Communicaiton Technology(ICT)
+
 **Status:** In Progress  
-*The future will tell*
+_The future will tell_
 
 </div>
 
@@ -26,6 +28,7 @@ title: "Jobjorn Rokenes Myren"
 <div class="experience-section">
 
 ### HVLRobotics
+
 **Year:** 2025  
 **Role:** Fullstack Developer  
 **Skills:** React, Three.js, CI/CD, Docker, Agile, Scrum
@@ -33,6 +36,7 @@ title: "Jobjorn Rokenes Myren"
 ---
 
 ### HVLRobotics
+
 **Year:** 2024  
 **Role:** Backend Developer  
 **Skills:** Python, TKInter
