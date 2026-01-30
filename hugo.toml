@@ -1,4 +1,8 @@
 baseURL = 'https://swampbear.github.io/jobjorn.no/'
+
+# Ensure all internal links use relative URLs for better portability
+relativeURLs = false
+canonifyURLs = false
 languageCode = 'en-us'
 title = 'Jobjorn Rokenes Myren'
 

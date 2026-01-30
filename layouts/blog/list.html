@@ -164,7 +164,7 @@
                     {{ range $posts }}
                     <article class="blog-post">
                         <div class="blog-header">
-                            <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+                            <h2><a href="{{ .Permalink }}">{{ .Title }}</a></h2>
                             <div class="blog-meta">
                                 {{ .Date.Format "2006-01-02" }}
                             </div>
@@ -174,7 +174,7 @@
                             {{ .Summary }}
                         </div>
                         {{ end }}
-                        <a href="{{ .RelPermalink }}" class="read-more">Read more →</a>
+                        <a href="{{ .Permalink }}" class="read-more">Read more →</a>
                     </article>
                     {{ end }}
                 {{ else }}
