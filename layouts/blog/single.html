@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ .Title }} - {{ .Site.Title }}</title>
     <meta name="description" content="{{ .Summary | default .Site.Params.description }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -13,85 +16,63 @@
         }
 
         body {
-            font-family: 'Courier New', monospace;
+            font-family: 'JetBrains Mono', monospace;
             line-height: 1.6;
-            color: #a9b1d6;
-            background: #1a1b26;
-            padding: 1rem;
+            color: #ccc;
+            background: #000;
+            padding: 2rem;
         }
 
         .terminal-wrapper {
-            max-width: 1000px;
+            max-width: 900px;
             margin: 0 auto;
         }
 
         header {
-            border: 1px solid #565f89;
-            background: #24283b;
-            margin-bottom: 1rem;
+            margin-bottom: 2rem;
         }
 
         .header-content {
-            padding: 2rem;
-            text-align: center;
+            padding: 1rem 0;
         }
 
         .header-content h1 {
-            font-size: 1.5rem;
-            color: #7dcfff;
-            margin-bottom: 1.5rem;
+            font-size: 1.25rem;
+            color: #fff;
+            margin-bottom: 1rem;
         }
 
         nav {
             display: flex;
-            gap: 0.5rem;
-            justify-content: center;
+            gap: 1rem;
         }
 
         nav a {
-            color: #a9b1d6;
+            color: #888;
             text-decoration: none;
-            padding: 0.5rem 1.5rem;
-            border: 1px solid #565f89;
-            background: #1f2335;
-            transition: all 0.2s;
+            transition: color 0.2s;
         }
 
         nav a:hover {
-            background: #2f334d;
-            color: #7dcfff;
-            border-color: #7aa2f7;
+            color: #fff;
         }
 
         .panel {
-            border: 1px solid #565f89;
-            background: #24283b;
         }
 
         .panel-title {
-            padding: 0.75rem 1rem;
-            background: #1f2335;
-            color: #7aa2f7;
-            font-weight: bold;
-            border-bottom: 1px solid #565f89;
+            color: #666;
+            font-size: 0.85rem;
+            margin-bottom: 1.5rem;
         }
 
         .panel-content {
-            padding: 2rem;
-        }
-
-        .article-meta {
-            color: #565f89;
-            font-size: 0.9rem;
-            margin-bottom: 2rem;
-            padding-bottom: 1rem;
-            border-bottom: 1px solid #414868;
         }
 
         .article-content {
             font-size: 1rem;
             line-height: 1.8;
-            color: #a9b1d6;
+            color: #ccc;
         }
 
         .article-content h1,
@@ -102,17 +83,15 @@
         .article-content h6 {
             margin-top: 2rem;
             margin-bottom: 1rem;
-            color: #7dcfff;
-            border-bottom: 1px solid #414868;
-            padding-bottom: 0.5rem;
+            color: #fff;
         }
 
         .article-content h2 {
-            font-size: 1.5rem;
+            font-size: 1.25rem;
         }
 
         .article-content h3 {
-            font-size: 1.25rem;
+            font-size: 1.1rem;
         }
 
         .article-content p {
@@ -122,7 +101,7 @@
         .article-content ul,
         .article-content ol {
             margin-bottom: 1.5rem;
-            margin-left: 2rem;
+            margin-left: 1.5rem;
         }
 
         .article-content li {
@@ -130,19 +109,17 @@
         }
 
         .article-content code {
-            background: #1f2335;
-            color: #9ece6a;
+            background: #111;
+            color: #aaa;
             padding: 0.2rem 0.4rem;
-            border: 1px solid #414868;
-            font-family: 'Courier New', monospace;
+            font-family: 'JetBrains Mono', monospace;
             font-size: 0.9em;
         }
 
         .article-content pre {
-            background: #1f2335;
-            color: #a9b1d6;
+            background: #111;
+            color: #aaa;
             padding: 1.5rem;
-            border: 1px solid #565f89;
             overflow-x: auto;
             margin-bottom: 1.5rem;
         }
@@ -151,24 +128,21 @@
             background: transparent;
             padding: 0;
             color: inherit;
-            border: none;
         }
 
         .article-content blockquote {
-            border-left: 3px solid #7aa2f7;
-            padding-left: 1.5rem;
+            border-left: 2px solid #333;
+            padding-left: 1rem;
             margin: 1.5rem 0;
-            color: #7aa2f7;
+            color: #888;
             font-style: italic;
-            background: #1f2335;
-            padding: 1rem 1.5rem;
         }
 
         .article-content img {
             max-width: 100%;
             height: auto;
-            border: 1px solid #565f89;
             margin: 1.5rem 0;
+            filter: grayscale(100%);
         }
 
         .article-content .image-right {
@@ -202,74 +176,42 @@
         }
 
         .article-content a {
-            color: #7aa2f7;
-            text-decoration: none;
-            border-bottom: 1px solid #565f89;
+            color: #888;
+            text-decoration: underline;
         }
 
         .article-content a:hover {
-            color: #bb9af7;
-            border-bottom-color: #bb9af7;
+            color: #fff;
         }
 
         .back-link {
             display: inline-block;
             margin-top: 2rem;
-            color: #7aa2f7;
+            color: #666;
             text-decoration: none;
-            border: 1px solid #565f89;
-            padding: 0.5rem 1.5rem;
-            background: #1f2335;
         }
 
         .back-link:hover {
-            background: #2f334d;
-            border-color: #7aa2f7;
+            color: #fff;
         }
 
         footer {
-            border: 1px solid #565f89;
-            background: #24283b;
-            margin-top: 1rem;
-            padding: 1rem;
-            text-align: center;
-            color: #565f89;
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid #333;
+            color: #444;
+            font-size: 0.85rem;
         }
 
         @media (max-width: 768px) {
-            .header-content h1 {
-                font-size: 1.25rem;
-            }
-
-            nav {
-                flex-direction: column;
-            }
-
-            nav a {
-                text-align: center;
-            }
-
-            .article-content {
-                font-size: 0.95rem;
+            body {
+                padding: 1rem;
             }
         }
 
-        ::-webkit-scrollbar {
-            width: 10px;
-            height: 10px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: #1a1b26;
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: #414868;
-            border: 1px solid #565f89;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: #565f89;
+        ::selection {
+            background: #333;
+            color: #fff;
         }
     </style>
 </head>
