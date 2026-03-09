@@ -3,11 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Blog - {{ .Site.Title }}</title>
-    <meta
-      name="description"
-      content="Blog posts by {{ .Site.Params.author }}"
-    />
+    <title>Neighbourhood - {{ .Site.Title }}</title>
+    <meta name="description" content="A list over all my internet neighbours" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -64,70 +61,58 @@
         color: #fff;
       }
 
-      .panel {
-      }
-
-      .panel-title {
-        color: #fff;
-        font-weight: bold;
-        margin-bottom: 1rem;
-        padding-bottom: 0.5rem;
-        border-bottom: 1px solid #333;
-      }
-
-      .panel-content {
-      }
-
-      .blog-post {
-        margin-bottom: 2rem;
-        padding-bottom: 2rem;
-        border-bottom: 1px solid #222;
-      }
-
-      .blog-post:last-child {
-        border-bottom: none;
-      }
-
-      .blog-header {
-        margin-bottom: 0.5rem;
-      }
-
-      .blog-post h2 {
-        font-size: 1.1rem;
-        margin-bottom: 0.25rem;
-      }
-
-      .blog-post h2 a {
-        color: #fff;
-        text-decoration: none;
-      }
-
-      .blog-post h2 a:hover {
-        color: #ccc;
-      }
-
-      .blog-meta {
-        color: #666;
-        font-size: 0.85rem;
-      }
-
-      .blog-summary {
+      .intro {
         color: #888;
-        line-height: 1.7;
-        margin: 0.75rem 0;
+        margin-bottom: 2rem;
       }
 
-      .read-more {
-        color: #666;
+      .neighbours-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 1.5rem;
+      }
+
+      .neighbour-card {
+        border: 1px solid #333;
+        transition: border-color 0.2s;
+      }
+
+      .neighbour-card:hover {
+        border-color: #666;
+      }
+
+      .neighbour-card a {
         text-decoration: none;
-        font-size: 0.85rem;
+        color: inherit;
+        display: block;
       }
 
-      .read-more:hover {
+      .neighbour-screenshot {
+        width: 100%;
+        aspect-ratio: 16 / 10;
+        object-fit: cover;
+        display: block;
+        background: #111;
+      }
+
+      .neighbour-info {
+        padding: 0.75rem;
+        border-top: 1px solid #333;
+      }
+
+      .neighbour-name {
         color: #fff;
+        font-size: 0.95rem;
+        font-weight: 700;
       }
 
-      .no-posts {
+      .neighbour-url {
+        color: #666;
+        font-size: 0.75rem;
+        margin-top: 0.25rem;
+      }
+
+      .no-neighbours {
         color: #444;
       }
 
@@ -155,32 +140,37 @@
     <div class="terminal-wrapper">
       <header>
         <div class="header-content">
-          <h1>$ cat blog/*</h1>
+          <h1>$ ls neighbourhood/</h1>
           <nav>
             <a href="{{ .Site.BaseURL }}">Home</a>
-            <a href="{{ .Site.BaseURL }}blog/" class="active">Blog</a>
-            <a href="{{ .Site.BaseURL }}neighbourhood/"> Neighbourhood</a>
+            <a href="{{ .Site.BaseURL }}blog/">Blog</a>
+            <a href="{{ .Site.BaseURL }}neighbourhood/" class="active"
+              >Neighbourhood</a
+            >
           </nav>
         </div>
       </header>
 
       <div class="panel">
-        <div class="panel-title">Posts</div>
-        <div class="panel-content">
-          {{ $posts := where .Site.RegularPages "Section" "blog" }} {{ if $posts
-          }} {{ range $posts }}
-          <article class="blog-post">
-            <div class="blog-header">
-              <h2><a href="{{ .Permalink }}">{{ .Title }}</a></h2>
-              <div class="blog-meta">{{ .Date.Format "2006-01-02" }}</div>
-            </div>
-            {{ if .Summary }}
-            <div class="blog-summary">{{ .Summary }}</div>
-            {{ end }}
-            <a href="{{ .Permalink }}" class="read-more">Read more →</a>
-          </article>
-          {{ end }} {{ else }}
-          <div class="no-posts">No blog posts yet. Stay tuned!</div>
+        <div class="intro">{{ .Content }}</div>
+        <div class="neighbours-grid">
+          {{ range .Params.neighbours }}
+          <div class="neighbour-card">
+            <a href="{{ .url }}" target="_blank" rel="noopener noreferrer">
+              <img
+                class="neighbour-screenshot"
+                src="https://image.thum.io/get/{{ .url }}"
+                alt="Screenshot of {{ .name }}"
+                loading="lazy"
+              />
+              <div class="neighbour-info">
+                <div class="neighbour-name">{{ .name }}</div>
+                <div class="neighbour-url">{{ .url }}</div>
+              </div>
+            </a>
+          </div>
+          {{ else }}
+          <div class="no-neighbours">No neighbours yet.</div>
           {{ end }}
         </div>
       </div>

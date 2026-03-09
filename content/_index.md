@@ -27,6 +27,12 @@ _The future will tell_
 
 <div class="experience-section">
 
+### Renasys
+
+**Year:** 2025  
+**Role:** IT/OT trainee
+**Skills:** PLCs, EtherCAT, git
+
 ### HVLRobotics
 
 **Year:** 2025  

@@ -1,4 +1,4 @@
-baseURL = 'https://swampbear.github.io/jobjorn.no/'
+baseURL = 'https://jobjorn.no'
 
 # Ensure all internal links use relative URLs for better portability
 relativeURLs = false
