@@ -1,0 +1,11 @@
+<header>
+  <div class="header-content">
+    <h1>{{ .Site.Title }}</h1>
+    <div class="page-command">{{ .command }}</div>
+    <nav>
+      <a href="{{ "/" | relURL }}"{{ if eq .active "home" }} class="active"{{ end }}>Home</a>
+      <a href="{{ "blog/" | relURL }}"{{ if eq .active "blog" }} class="active"{{ end }}>Blog</a>
+      <a href="{{ "neighbourhood/" | relURL }}"{{ if eq .active "neighbourhood" }} class="active"{{ end }}>Neighbourhood</a>
+    </nav>
+  </div>
+</header>
