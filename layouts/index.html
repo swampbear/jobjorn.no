@@ -61,25 +61,19 @@
         color: #fff;
       }
 
-      .container {
+      .content-area {
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: 2rem;
       }
 
-      .panel {
-        margin-bottom: 1rem;
-      }
-
       .panel-title {
         color: #fff;
         font-weight: bold;
+        font-size: 1rem;
         margin-bottom: 1rem;
         padding-bottom: 0.5rem;
         border-bottom: 1px solid #333;
-      }
-
-      .panel-content {
       }
 
       .item {
@@ -87,37 +81,33 @@
       }
 
       .item-header {
-        margin-bottom: 0.5rem;
         display: flex;
         justify-content: space-between;
         align-items: center;
+        margin-bottom: 0.5rem;
       }
 
-      .item-title {
+      .item-name {
         color: #fff;
         font-weight: bold;
       }
 
-      .status-badge {
+      .item-badge {
         font-size: 0.8rem;
         color: #888;
       }
 
-      .status-success {
-        color: #888;
-      }
-
-      .status-warning {
-        color: #888;
-      }
-
       .item-detail {
-        margin: 0.25rem 0;
         color: #888;
+        margin: 0.25rem 0;
       }
 
       .item-detail strong {
         color: #ccc;
+      }
+
+      .item-detail em {
+        color: #888;
       }
 
       .skills-grid {
@@ -136,6 +126,12 @@
         content: "#";
       }
 
+      @media (max-width: 768px) {
+        .content-area {
+          grid-template-columns: 1fr;
+        }
+      }
+
       footer {
         margin-top: 2rem;
         padding-top: 1rem;
@@ -144,13 +140,9 @@
         font-size: 0.85rem;
       }
 
-      .year-badge {
-        color: #888;
-      }
-
       @media (max-width: 768px) {
-        .container {
-          grid-template-columns: 1fr;
+        body {
+          padding: 1rem;
         }
       }
 
@@ -164,75 +156,53 @@
     <div class="terminal-wrapper">
       <header>
         <div class="header-content">
-          <h1>$ whoami</h1>
+          <h1>{{ .Site.Title }}</h1>
           <nav>
             <a href="{{ .Site.BaseURL }}" class="active">Home</a>
             <a href="{{ .Site.BaseURL }}blog/">Blog</a>
-            <a href="{{ .Site.BaseURL }}neighbourhood/"> Neighbourhood</a>
+            <a href="{{ .Site.BaseURL }}neighbourhood/">Neighbourhood</a>
           </nav>
         </div>
       </header>
 
-      <div class="container">
+      <div class="content-area">
         <div class="panel">
           <div class="panel-title">Education</div>
-          <div class="panel-content">
-            <div class="item">
-              <div class="item-header">
-                <span class="item-title">B.Sc Information Technology</span>
-                <span class="status-badge status-success">✓ COMPLETED</span>
-              </div>
-              <div class="item-detail">
-                <strong>Thesis:</strong> Retrieval Augmented Generation Fjord1
-              </div>
-              <div class="item-detail"><strong>Grade:</strong> A</div>
+          {{ range .Params.education }}
+          <div class="item">
+            <div class="item-header">
+              <span class="item-name">{{ .name }}</span>
+              {{ if eq .status "completed" }}
+              <span class="item-badge">completed</span>
+              {{ else if eq .status "in_progress" }}
+              <span class="item-badge">in progress</span>
+              {{ end }}
             </div>
-
-            <div class="item">
-              <div class="item-header">
-                <span class="item-title">M.Sc ICT Engineering</span>
-                <span class="status-badge status-warning">⟳ IN PROGRESS</span>
-              </div>
-              <div class="item-detail">The future will tell</div>
-            </div>
+            {{ range .details }}
+            <div class="item-detail">{{ . | markdownify }}</div>
+            {{ end }}
           </div>
+          {{ end }}
         </div>
 
         <div class="panel">
           <div class="panel-title">Experience</div>
-          <div class="panel-content">
-            <div class="item">
-              <div class="item-header">
-                <span class="item-title">HVLRobotics</span>
-                <span class="year-badge">[2025]</span>
-              </div>
-              <div class="item-detail">
-                <strong>Role:</strong> Fullstack Developer
-              </div>
-              <div class="skills-grid">
-                <span class="skill-tag">React</span>
-                <span class="skill-tag">Three.js</span>
-                <span class="skill-tag">CI/CD</span>
-                <span class="skill-tag">Docker</span>
-                <span class="skill-tag">Agile</span>
-                <span class="skill-tag">Scrum</span>
-              </div>
+          {{ range .Params.experience }}
+          <div class="item">
+            <div class="item-header">
+              <span class="item-name">{{ .name }}</span>
+              <span class="item-badge">[{{ .year }}]</span>
             </div>
-
-            <div class="item">
-              <div class="item-header">
-                <span class="item-title">HVLRobotics</span>
-                <span class="year-badge">[2024]</span>
-              </div>
-              <div class="item-detail">
-                <strong>Role:</strong> Backend Developer
-              </div>
-              <div class="skills-grid">
-                <span class="skill-tag">Python</span>
-                <span class="skill-tag">TKInter</span>
-              </div>
+            <div class="item-detail"><strong>Role:</strong> {{ .role }}</div>
+            {{ if .skills }}
+            <div class="skills-grid">
+              {{ range .skills }}
+              <span class="skill-tag">{{ . }}</span>
+              {{ end }}
             </div>
+            {{ end }}
           </div>
+          {{ end }}
         </div>
       </div>
 

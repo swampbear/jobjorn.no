@@ -64,67 +64,49 @@
         color: #fff;
       }
 
-      .panel {
+      .posts-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 1.5rem;
       }
 
-      .panel-title {
+      .post-card {
+        border: 1px solid #333;
+        transition: border-color 0.2s;
+      }
+
+      .post-card:hover {
+        border-color: #666;
+      }
+
+      .post-card a {
+        display: block;
+        padding: 1.25rem;
+        text-decoration: none;
+        color: inherit;
+      }
+
+      .post-title {
         color: #fff;
-        font-weight: bold;
-        margin-bottom: 1rem;
-        padding-bottom: 0.5rem;
-        border-bottom: 1px solid #333;
-      }
-
-      .panel-content {
-      }
-
-      .blog-post {
-        margin-bottom: 2rem;
-        padding-bottom: 2rem;
-        border-bottom: 1px solid #222;
-      }
-
-      .blog-post:last-child {
-        border-bottom: none;
-      }
-
-      .blog-header {
+        font-size: 0.95rem;
+        font-weight: 700;
         margin-bottom: 0.5rem;
       }
 
-      .blog-post h2 {
-        font-size: 1.1rem;
-        margin-bottom: 0.25rem;
-      }
-
-      .blog-post h2 a {
-        color: #fff;
-        text-decoration: none;
-      }
-
-      .blog-post h2 a:hover {
-        color: #ccc;
-      }
-
-      .blog-meta {
+      .post-meta {
         color: #666;
-        font-size: 0.85rem;
+        font-size: 0.75rem;
+        margin-bottom: 0.75rem;
       }
 
-      .blog-summary {
+      .post-summary {
         color: #888;
-        line-height: 1.7;
-        margin: 0.75rem 0;
-      }
-
-      .read-more {
-        color: #666;
-        text-decoration: none;
         font-size: 0.85rem;
-      }
-
-      .read-more:hover {
-        color: #fff;
+        line-height: 1.6;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
       }
 
       .no-posts {
@@ -155,34 +137,32 @@
     <div class="terminal-wrapper">
       <header>
         <div class="header-content">
-          <h1>$ cat blog/*</h1>
+          <h1>{{ .Site.Title }}</h1>
           <nav>
             <a href="{{ .Site.BaseURL }}">Home</a>
             <a href="{{ .Site.BaseURL }}blog/" class="active">Blog</a>
-            <a href="{{ .Site.BaseURL }}neighbourhood/"> Neighbourhood</a>
+            <a href="{{ .Site.BaseURL }}neighbourhood/">Neighbourhood</a>
           </nav>
         </div>
       </header>
 
-      <div class="panel">
-        <div class="panel-title">Posts</div>
-        <div class="panel-content">
-          {{ $posts := where .Site.RegularPages "Section" "blog" }} {{ if $posts
-          }} {{ range $posts }}
-          <article class="blog-post">
-            <div class="blog-header">
-              <h2><a href="{{ .Permalink }}">{{ .Title }}</a></h2>
-              <div class="blog-meta">{{ .Date.Format "2006-01-02" }}</div>
-            </div>
-            {{ if .Summary }}
-            <div class="blog-summary">{{ .Summary }}</div>
-            {{ end }}
-            <a href="{{ .Permalink }}" class="read-more">Read more →</a>
-          </article>
-          {{ end }} {{ else }}
-          <div class="no-posts">No blog posts yet. Stay tuned!</div>
+      <div class="posts-grid">
+        {{ $posts := where .Site.RegularPages "Section" "blog" }}
+        {{ if $posts }}
+          {{ range $posts }}
+          <div class="post-card">
+            <a href="{{ .Permalink }}">
+              <div class="post-title">{{ .Title }}</div>
+              <div class="post-meta">{{ .Date.Format "2006-01-02" }}</div>
+              {{ if .Summary }}
+              <div class="post-summary">{{ .Summary | plainify | truncate 150 }}</div>
+              {{ end }}
+            </a>
+          </div>
           {{ end }}
-        </div>
+        {{ else }}
+          <div class="no-posts">No blog posts yet. Stay tuned!</div>
+        {{ end }}
       </div>
 
       <footer>&copy; {{ now.Year }} Jobjorn Rokenes Myren</footer>
